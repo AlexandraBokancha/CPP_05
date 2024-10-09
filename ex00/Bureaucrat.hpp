@@ -1,14 +1,13 @@
 #ifndef BUREAUCRAT_HPP
-# define BUREAUCRAT_HPP
+#define BUREAUCRAT_HPP
 # include <iostream>
-# include <exception>
 
 class Bureaucrat
 {
     private:
 
-        const std::string _name;
-        int _grade;
+        const std::string   _name;
+        int                 _grade;
         
     public:
 
@@ -18,11 +17,16 @@ class Bureaucrat
         Bureaucrat &operator=(const Bureaucrat &other);
         ~Bureaucrat();
 
-        std::string getName() const;
-        int getGrade() const;
+        /* Accessors */
 
-        void upGrade();
-        void downGrade();
+        std::string getName() const;
+        int         getGrade() const;
+        
+        /* Member functions */
+
+        void    upGrade();
+        void    downGrade();
+
 
         /* Exception Classes */
 
@@ -33,9 +37,11 @@ class Bureaucrat
         class   GradeTooLowException: public std::exception {
             virtual const char* what() const throw() { return "Grade is too low (150 is a limit)"; }
         };
+
 };
 
-std::ostream & operator<<(std::ostream & o, Bureaucrat const & src);
+/* << operator to ostream */
+
+std::ostream&   operator<<( std::ostream& o, const Bureaucrat& rhs );
 
 #endif
-
