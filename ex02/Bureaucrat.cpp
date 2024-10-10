@@ -61,6 +61,15 @@ void Bureaucrat::signForm(AForm & target){
     } 
 }
 
+/**
+ * @brief Funciton attemps to execute the form.
+ * If it's successful, it prints: <bureaucrat> executed <form>.
+ * If not, print an explicit error message.
+ */
+void Bureaucrat::executeForm(AForm const & form){
+	// implementation
+}
+
 // Destructor
 Bureaucrat::~Bureaucrat(void){
     std::cout << "(Bureaucrat) Destructor called" << std::endl;

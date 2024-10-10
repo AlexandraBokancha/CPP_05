@@ -8,14 +8,14 @@ ShrubberyCreationForm::ShrubberyCreationForm(void) : AForm(), _target("foo")
 }
 
 // Parametric constructor 
-ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : AForm(target, 145, 147), _target(target)
+ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : AForm(target, 145, 137), _target(target)
 {
     std::cout << "(Shrubbery) Parametric constructor called" << std::endl;
     return ;
 }
 
 // Copy constructor
-ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &other) : _target(other._target)
+ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &other) : AForm(other._target, 145, 137), _target(other._target)
 {
     std::cout << "(Shrubbery) Copy constructor called" << std::endl;
     return ;
@@ -26,7 +26,7 @@ ShrubberyCreationForm &ShrubberyCreationForm::operator=(const ShrubberyCreationF
 {
     std::cout << "(Shrubbery) Assignment operator called" << std::endl;
     if (this != &other)
-		this->_target = other._target;
+		AForm::operator=(other);
     return (*this);
 }
 
@@ -44,7 +44,7 @@ void ShrubberyCreationForm::execute(const Bureaucrat & executor) const{
 	if (executor.getGrade() > getGradeToExecute())
 	 	throw AForm::GradeTooLowException();
 	std::string newTarget(_target); // we need to create a non-const copy
-	std::ofstream myFile(newTarget.append("_shrubery").c_str());
+	std::ofstream myFile(newTarget.append("_shrubbery").c_str());
 	if (myFile.is_open()) {
         myFile << "        ^  ^\n";
         myFile << "       ^^^^\n";

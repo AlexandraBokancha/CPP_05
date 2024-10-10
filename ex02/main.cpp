@@ -1,36 +1,114 @@
 #include "Bureaucrat.hpp"
 #include "AForm.hpp"
 #include "ShrubberyCreationForm.hpp"
+#include "PresidentialPardonForm.hpp"
+#include "RobotomyRequestForm.hpp"
+
+void test5(){
+
+	/* will execute robotomy form */
+
+	AForm *newForm = new RobotomyRequestForm("robot");
+	try{
+		Bureaucrat bureacrat("Jim", 32);
+		bureacrat.signForm(*newForm);
+		newForm->execute(bureacrat);
+		delete newForm;
+	}
+	catch (std::exception & e){
+        std::cout << e.what() << std::endl;
+		delete newForm; // we need to free memory if we catch a error;
+    }
+}
 
 void test4(){
 
+	/* will execute presedential form */
+
+	AForm *newForm = new PresidentialPardonForm("rabbit");
+	try{
+		Bureaucrat bureacrat("Jim", 2);
+		bureacrat.signForm(*newForm);
+		newForm->execute(bureacrat);
+		delete newForm;
+	}
+	catch (std::exception & e){
+        std::cout << e.what() << std::endl;
+		delete newForm; // we need to free memory if we catch a error;
+    }
 }
 
 void test3(){
+		
+	/* will throw an exception because grade of 
+		bureaucrat (149) > gradeToExecute (147) */
+
+	AForm *newForm = new ShrubberyCreationForm("tree");
+	try{
+		Bureaucrat bureacrat("John", 145);
+		bureacrat.signForm(*newForm);
+		bureacrat.downGrade();
+		bureacrat.downGrade();
+		bureacrat.downGrade();
+		bureacrat.downGrade();
+		newForm->execute(bureacrat);
+		delete newForm;
+	}
+	catch (std::exception & e){
+        std::cout << e.what() << std::endl;
+		delete newForm; // we need to free memory if we catch a error;
+    }
 }
+
 
 void test2(){
 
- 
+	/* will execute ShrubberyForm*/
+
+	AForm *newForm = new ShrubberyCreationForm("new_tree");
+	
+	try{
+		Bureaucrat bureacrat("John", 23);
+		bureacrat.signForm(*newForm);
+		newForm->execute(bureacrat);
+		delete newForm;
+	}
+	catch (std::exception & e){
+        std::cout << e.what() << std::endl;
+		delete newForm; // we need to free memory if we catch a error;
+    }
 }
 
 void test1(){
-	AForm *newForm = new ShrubberyCreationForm("paper");
-	Bureaucrat bureacrat("John", 23);
-	bureacrat.signForm(*newForm);
-	newForm->execute(bureacrat);
+
+	/* will throw an exception because form is not signed */
+
+	AForm *newForm = new ShrubberyCreationForm("tree");
+	try{
+		Bureaucrat bureacrat("John", 23);
+		newForm->execute(bureacrat);
+		delete newForm;
+	}
+	catch (std::exception & e){
+        std::cout << e.what() << std::endl;
+		delete newForm; // we need to free memory if we catch a error;
+    }
 }
 
 int main(){
 
-    try{
-        test1();
-        //test2();
-        //test3();
-        //test4();
-    }
-    catch (std::exception & e){
-        std::cout << e.what() << std::endl;
-    }
-    return 0; 
+	/* SHRUBERRY TESTS*/
+	
+	//test1();
+	//test2();
+	//test3();
+
+	/* PRESEDENTIAL TESTS */
+
+    //test4();
+
+	/* ROBOTOMY TESTS */
+	//test5();
+	
+	return 0; 
 }
