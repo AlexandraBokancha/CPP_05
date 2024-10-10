@@ -17,8 +17,6 @@ class RobotomyRequestForm : public AForm
         RobotomyRequestForm(const RobotomyRequestForm& other);
         RobotomyRequestForm &operator=(const RobotomyRequestForm &other);
         ~RobotomyRequestForm();
-
-		void	robotomize(const AForm & target) const;
 };
 
 #endif

@@ -43,8 +43,8 @@ void ShrubberyCreationForm::execute(const Bureaucrat & executor) const{
 		throw AForm::NotSignedException();
 	if (executor.getGrade() > getGradeToExecute())
 	 	throw AForm::GradeTooLowException();
-	//char *fileName = _target.c_str() + "_shrubbery";
-	std::ofstream myFile("");
+	std::string newTarget(_target); // we need to create a non-const copy
+	std::ofstream myFile(newTarget.append("_shrubery").c_str());
 	if (myFile.is_open()) {
         myFile << "        ^  ^\n";
         myFile << "       ^^^^\n";
